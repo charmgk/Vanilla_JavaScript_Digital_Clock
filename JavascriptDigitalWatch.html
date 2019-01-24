@@ -1,0 +1,85 @@
+<html>
+<header>
+    <title>The javascript digital watch</title>
+</header>
+
+<style type="text/css">
+    body {
+        background: #34495e;
+    }
+
+    .clock {
+        margin: auto;
+        text-align: center;
+        font-size: 60px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+    }
+
+    .centerall {
+        margin: auto;
+        text-align: center;
+        font-family: 'ZCOOL KuaiLe', cursive;
+        color: darkblue;
+        font-size: 60px
+    }
+
+    .drawline::after {
+        margin: auto;
+        width: 70%;
+        border: 2px solid #000;
+        content: '';
+        display: block;
+    }
+</style>
+
+
+<!-- Call the function as soon as the body loads -->
+
+<body onload="getTheTime()">
+
+    <div class="centerall">
+        <!-- the heading -->
+        <h2 style="color:#fff; font-weight: 800;" class="drawline">*What is the time now dot com</h2>
+    </div>
+
+    <div class="clock">
+        <!-- This is the text that gets replaced -->
+        <span style="color:#000; font-weight: 700;">{{<span id="thetext" style="color: #FFFFFF; font-weight: 200;">time</span>}}</span>
+    </div>
+
+    <!-- The function to get time -->
+    <script type="text/javascript">
+        function getTheTime() {
+            var today = new Date()
+            hours = today.getHours()
+            minutes = today.getMinutes()
+            seconds = today.getSeconds()
+
+            // append a "0" infront of single digits
+            hours = checkSingleDigit(hours)
+            minutes = checkSingleDigit(minutes)
+            seconds = checkSingleDigit(seconds)
+
+            today = (hours + ':' + minutes + ":" + seconds + " " + "HRS")
+
+            document.getElementById("thetext").innerHTML = today;
+
+            setTimeout(getTheTime, 500);
+        }
+        // the function to append a "0" infront of single digits
+        function checkSingleDigit(thetime) {
+            if (thetime < 10) {
+                thetime = "0" + thetime
+            };
+            return thetime;
+        }
+    </script>
+
+    <div style="position: relative; top: 50%; color: ivory; font-size: 8px">
+       <h1 style="text-align:center;"> *This is a Bojack Horseman reference (obviously!) </h1> 
+    </div>
+
+</body>
+
+</html>
